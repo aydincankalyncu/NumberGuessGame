@@ -1,8 +1,16 @@
 import { ReactNode } from "react";
-import { StyleSheet, Text, View, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  GestureResponderEvent,
+} from "react-native";
+import Colors from "../../constants/colors";
 
 type PrimaryButtonProps = {
   children: ReactNode;
+  onPress: (event: GestureResponderEvent) => void;
 };
 
 const PrimaryButton = (prop: PrimaryButtonProps) => {
@@ -15,8 +23,8 @@ const PrimaryButton = (prop: PrimaryButtonProps) => {
         style={({ pressed }) =>
           pressed ? styles.pressed : styles.buttonInnerContainer
         }
-        onPress={pressHandler}
-        android_ripple={{ color: "#640233" }}
+        onPress={prop.onPress}
+        android_ripple={{ color: Colors.primary600 }}
       >
         <Text style={styles.buttonText}>{prop.children}</Text>
       </Pressable>
@@ -28,7 +36,7 @@ export default PrimaryButton;
 
 const styles = StyleSheet.create({
   buttonInnerContainer: {
-    backgroundColor: "#72063c",
+    backgroundColor: Colors.primary500,
     paddingVertical: 8,
     paddingHorizontal: 16,
     elevation: 2,
